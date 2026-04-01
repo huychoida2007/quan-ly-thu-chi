@@ -60,6 +60,8 @@ BAITAP.JAVA/
 ## 📸 Ảnh chụp màn hình (Screenshots)
 *[Lưu ý: Bạn hãy chụp màn hình ứng dụng lúc đang chạy, upload lên một nền tảng ảnh hoặc thư mục `images` trong GitHub, sau đó thay thế link bên dưới]*
 
-![Màn hình Giao diện chính](link_anh_giao_dien_chinh)
-![Màn hình Thêm Giao dịch](link_anh_them_giao_dich)
-![Màn hình Biểu đồ Thống kê](link_anh_bieu_do)
+![Màn hình Giao diện chính]<img width="1207" height="689" alt="image" src="https://github.com/user-attachments/assets/1c795c04-da85-4ee0-8e5e-ec1e4e778904" />
+
+![Màn hình Thêm Giao dịch]<img width="1209" height="694" alt="image" src="https://github.com/user-attachments/assets/18ec4bd9-4062-4ca5-8118-3fd36fcb4ee0" />
+
+![Màn hình Biểu đồ Thống kê]<img width="1211" height="691" alt="image" src="https://github.com/user-attachments/assets/123370c4-5006-496c-9ef7-04b3f8aa433e" />
