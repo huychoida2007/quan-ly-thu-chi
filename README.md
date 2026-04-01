@@ -16,6 +16,7 @@
 - [x] Giao diện người dùng (GUI) thân thiện, dễ thao tác bằng Java Swing (sử dụng linh hoạt các Layout và Component).
 - [x] Bắt lỗi nhập liệu chặt chẽ (Exception Handling), tự định nghĩa Custom Exception (vd: `LoiSoTienKhongHopLe`) và hiện thông báo lỗi bằng `JOptionPane`.
 - [x] Tự động tính toán tổng số dư hiện tại dựa trên các khoản thu/chi.
+- [x] Vẽ biểu đồ thống kê chi tiêu hàng tháng (sử dụng thư viện JFreeChart).
 
 ## 💻 Công nghệ & Thư viện sử dụng (Technologies)
 * **Ngôn ngữ:** Java (JDK 17+)
