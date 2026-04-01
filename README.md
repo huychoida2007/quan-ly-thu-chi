@@ -30,22 +30,22 @@ Mã nguồn được tổ chức chặt chẽ theo mô hình **MVC (Model - View
 
 ```text
 BAITAP.JAVA/
- ┣ src/
- ┃ ┣ controller/  # Chứa các lớp xử lý nghiệp vụ, tính toán logic và tương tác File
+ ┣ 📦src/
+ ┃ ┣ 📂controller/  # Chứa các lớp xử lý nghiệp vụ, tính toán logic và tương tác File
  ┃ ┃ ┗ DieuKhienGiaoDich.java
- ┃ ┣ exception/   # Định nghĩa các lỗi tự chọn (Custom Exception)
+ ┃ ┣ 📂exception/   # Định nghĩa các lỗi tự chọn (Custom Exception)
  ┃ ┃ ┗ LoiSoTienKhongHopLe.java
- ┃ ┣ main/        # File Entry-point để khởi động ứng dụng
+ ┃ ┣ 📂main/        # File Entry-point để khởi động ứng dụng
  ┃ ┃ ┗ ChayChuongTrinh.java
- ┃ ┣ model/       # Chứa các lớp thực thể (chỉ gồm Thuộc tính, Constructor, Getter/Setter)
+ ┃ ┣ 📂model/       # Chứa các lớp thực thể (chỉ gồm Thuộc tính, Constructor, Getter/Setter)
  ┃ ┃ ┣ GiaoDich.java (Abstract)
  ┃ ┃ ┣ KhoanThu.java
  ┃ ┃ ┗ KhoanChi.java
- ┃ ┗ view/        # Chứa các file giao diện cấu thành từ JFrame, JPanel
+ ┃ ┗ 📂view/        # Chứa các file giao diện cấu thành từ JFrame, JPanel
  ┃   ┗ GiaoDienChinh.java
- ┣ .gitignore     # Chặn các file rác/IDE config không cần thiết khi push
- ┣ README.md      # Tài liệu mô tả dự án và hướng dẫn cài đặt
- ┗ dulieu_thuchi.dat # Tệp tin lưu trữ dữ liệu thực tế
+ ┣ 📜.gitignore     # Chặn các file rác/IDE config không cần thiết khi push
+ ┣ 📜README.md      # Tài liệu mô tả dự án và hướng dẫn cài đặt
+ ┗ 📜dulieu_thuchi.dat # Tệp tin lưu trữ dữ liệu thực tế
 ```
 
 ## 🚀 Hướng dẫn cài đặt và chạy (Installation)
