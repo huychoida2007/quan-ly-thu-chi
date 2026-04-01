@@ -6,6 +6,12 @@ import model.KhoanChi;
 import model.KhoanThu;
 import model.GiaoDich;
 
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.data.category.DefaultCategoryDataset;
+import org.jfree.chart.plot.CategoryPlot;
+import org.jfree.chart.renderer.category.BarRenderer;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.text.MaskFormatter;
@@ -25,7 +31,7 @@ public class GiaoDienChinh extends JFrame {
     private JComboBox<String> cbLoai;
     private JTable bangDuLieu;
     private DefaultTableModel moHinhBang;
-    private JButton btnThem, btnSua, btnXoa, btnLamMoi;
+    private JButton btnThem, btnSua, btnXoa, btnLamMoi, btnBieuDo;
     private JLabel lblTongSoDu;
 
     public GiaoDienChinh() {
@@ -163,16 +169,19 @@ public class GiaoDienChinh extends JFrame {
         btnSua = new JButton("Cập nhật");
         btnXoa = new JButton("Xóa");
         btnLamMoi = new JButton("Làm mới");
+        btnBieuDo = new JButton("Xem biểu đồ");
 
         btnThem.setFont(kieuChuDam);
         btnSua.setFont(kieuChuDam);
         btnXoa.setFont(kieuChuDam);
         btnLamMoi.setFont(kieuChuDam);
+        btnBieuDo.setFont(kieuChuDam);
 
         pnlNutBam.add(btnThem);
         pnlNutBam.add(btnSua);
         pnlNutBam.add(btnXoa);
         pnlNutBam.add(btnLamMoi);
+        pnlNutBam.add(btnBieuDo);
 
         lblTongSoDu = new JLabel("Tổng số dư hiện tại: 0 VNĐ", SwingConstants.CENTER);
         lblTongSoDu.setFont(new Font("Segoe UI", Font.BOLD, 18));
@@ -187,6 +196,7 @@ public class GiaoDienChinh extends JFrame {
         btnSua.addActionListener(e -> xuLyThemSua(false));
         btnXoa.addActionListener(e -> xuLyXoa());
         btnLamMoi.addActionListener(e -> xoaForm());
+        btnBieuDo.addActionListener(e -> hienThiBieuDo());
     }
 
     private void xuLyThemSua(boolean laThem) {
@@ -276,6 +286,67 @@ public class GiaoDienChinh extends JFrame {
         txtSoTien.setText("");
         cbLoai.setSelectedIndex(0);
         bangDuLieu.clearSelection();
+    }
+
+    private void hienThiBieuDo() {
+        if (dieuKhien.layDanhSach().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Chưa có dữ liệu giao dịch để vẽ biểu đồ!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+
+        double tongThu = 0;
+        double tongChi = 0;
+
+        // Tính toán tổng thu và tổng chi từ danh sách
+        for (GiaoDich gd : dieuKhien.layDanhSach()) {
+            if (gd.layLoaiGiaoDich().equals("Khoan Thu")) {
+                tongThu += gd.getSoTien();
+            } else {
+                tongChi += gd.getSoTien();
+            }
+        }
+
+        // Tạo dữ liệu cho biểu đồ cột
+        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+        dataset.addValue(tongThu, "Số tiền (VNĐ)", "Tổng Thu");
+        dataset.addValue(tongChi, "Số tiền (VNĐ)", "Tổng Chi");
+
+        // 1. TẠO BIỂU ĐỒ (Đã thêm đủ các tham số bắt buộc của JFreeChart)
+        JFreeChart chart = ChartFactory.createBarChart(
+                "BIỂU ĐỒ THỐNG KÊ THU CHI", // Tiêu đề biểu đồ
+                "Danh mục",                   // Trục X
+                "Số tiền (VNĐ)",              // Trục Y
+                dataset,                      // Dữ liệu
+                org.jfree.chart.plot.PlotOrientation.VERTICAL, // Hướng biểu đồ (Cột dọc)
+                true,                         // Hiển thị chú giải (Legend)
+                true,                         // Hiển thị tooltips
+                false                         // Không dùng URLs
+        );
+
+        // 2. ĐỔI MÀU CỘT (Code nằm ĐỘC LẬP sau khi tạo chart)
+        CategoryPlot plot = chart.getCategoryPlot();
+        BarRenderer renderer = new BarRenderer() {
+            @Override
+            public Paint getItemPaint(int row, int column) {
+                if (column == 0) {
+                    return Color.BLUE; // Cột Tổng Thu màu Xanh dương
+                } else {
+                    return Color.RED;  // Cột Tổng Chi màu Đỏ
+                }
+            }
+        };
+        plot.setRenderer(renderer);
+
+        // 3. HIỂN THỊ LÊN MÀN HÌNH
+        ChartPanel chartPanel = new ChartPanel(chart);
+        chartPanel.setPreferredSize(new Dimension(600, 450));
+
+        JFrame frameBieuDo = new JFrame("Thống kê chi tiêu");
+        frameBieuDo.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        frameBieuDo.add(chartPanel);
+        frameBieuDo.pack();
+        frameBieuDo.setLocationRelativeTo(this); // Căn giữa so với form chính
+        frameBieuDo.setVisible(true);
     }
 
     private void taiDuLieu() {
