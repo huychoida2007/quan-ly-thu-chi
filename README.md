@@ -62,4 +62,5 @@ BAITAP.JAVA/
 
 ![Màn hình Thêm Giao dịch]<img width="1209" height="694" alt="image" src="https://github.com/user-attachments/assets/18ec4bd9-4062-4ca5-8118-3fd36fcb4ee0" />
 
-![Màn hình Biểu đồ Thống kê]<img width="1211" height="691" alt="image" src="https://github.com/user-attachments/assets/123370c4-5006-496c-9ef7-04b3f8aa433e" />
+![Màn hình Biểu đồ Thống kê]<img width="1208" height="695" alt="image" src="https://github.com/user-attachments/assets/a1d28535-c206-4fd1-8a91-215769f313c5" />
+
