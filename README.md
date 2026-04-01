@@ -58,7 +58,6 @@ BAITAP.JAVA/
 4. **Chạy ứng dụng:** Tìm đến file `src/main/ChayChuongTrinh.java`, nhấn chuột phải và chọn **Run Java** để bắt đầu.
 
 ## 📸 Ảnh chụp màn hình (Screenshots)
-*[Lưu ý: Bạn hãy chụp màn hình ứng dụng lúc đang chạy, upload lên một nền tảng ảnh hoặc thư mục `images` trong GitHub, sau đó thay thế link bên dưới]*
 
 ![Màn hình Giao diện chính]<img width="1207" height="689" alt="image" src="https://github.com/user-attachments/assets/1c795c04-da85-4ee0-8e5e-ec1e4e778904" />
 
