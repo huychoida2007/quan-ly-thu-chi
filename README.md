@@ -24,3 +24,37 @@
 * **Lưu trữ:** File Binary (.dat)
 * **Kiến trúc:** Mô hình MVC (Model - View - Controller)
 * **Tính chất OOP:** Áp dụng Triệt để Tính Kế thừa, Tính Đa hình, Tính Trừu tượng và Đóng gói.
+
+## 📂 Cấu trúc thư mục (Project Structure)
+Mã nguồn được tổ chức theo mô hình MVC để dễ dàng quản lý và mở rộng:
+
+```text
+BAITAP.JAVA/
+ ┣ src/
+ ┃ ┣ controller/  # Điều hướng dữ liệu và xử lý File
+ ┃ ┃ ┗ DieuKhienGiaoDich.java
+ ┃ ┣ exception/   # Định nghĩa các lỗi tự chọn
+ ┃ ┃ ┗ LoiSoTienKhongHopLe.java
+ ┃ ┣ main/        # Điểm khởi đầu của chương trình
+ ┃ ┃ ┗ ChayChuongTrinh.java
+ ┃ ┣ model/       # Cấu trúc dữ liệu và đối tượng
+ ┃ ┃ ┣ GiaoDich.java (Abstract)
+ ┃ ┃ ┣ KhoanThu.java
+ ┃ ┃ ┗ KhoanChi.java
+ ┃ ┗ view/        # Giao diện người dùng Swing
+ ┃   ┗ GiaoDienChinh.java
+ ┣ .gitignore     # Chặn các file rác không cần thiết khi push
+ ┣ README.md      # Tài liệu hướng dẫn dự án
+ ┗ dulieu_thuchi.dat # Tệp tin lưu trữ dữ liệu thực tế
+
+## 🚀 Hướng dẫn cài đặt và chạy (Installation)
+1.Cài đặt môi trường: Đảm bảo máy tính đã cài đặt JDK 17 trở lên và VS Code (hoặc IDE Java bất kỳ).
+
+2.Tải mã nguồn:   
+Bash
+git clone [https://github.com/huychoida2007/quan-ly-thu-chi.git](https://github.com/huychoida2007/quan-ly-thu-chi.git)
+
+3.Mở dự án: Mở thư mục BAITAP.JAVA bằng VS Code.
+
+4.Chạy ứng dụng: Tìm đến file src/main/ChayChuongTrinh.java, nhấn chuột phải và chọn Run Java.
+
