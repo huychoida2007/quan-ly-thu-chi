@@ -43,8 +43,14 @@ public class GiaoDienChinh extends JFrame {
 
     private void thietLapGiaoDien() {
         try {
-            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+            // Cố gắng áp dụng giao diện FlatLaf siêu phẳng (hiện đại)
+            UIManager.setLookAndFeel("com.formdev.flatlaf.FlatLightLaf");
         } catch (Exception e) {
+            try {
+                // Cơ chế dự phòng: Nếu chưa có thư viện FlatLaf, tự động chuyển về giao diện hệ thống Windows
+                UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+            } catch (Exception ex) {
+            }
         }
     }
 
@@ -207,6 +213,7 @@ public class GiaoDienChinh extends JFrame {
                 return;
             }
 
+            // Xử lý ngoại lệ: Kiểm tra tính hợp lệ của ngày tháng trên lịch dương thực tế
             try {
                 DateTimeFormatter kieuNgay = DateTimeFormatter.ofPattern("dd/MM/uuuu").withResolverStyle(ResolverStyle.STRICT);
                 LocalDate.parse(ngay, kieuNgay);
@@ -223,10 +230,12 @@ public class GiaoDienChinh extends JFrame {
 
             double tien = Double.parseDouble(txtSoTien.getText().trim());
 
+            // Ném ra ngoại lệ tự định nghĩa (Custom Exception) nếu số tiền <= 0
             if (tien <= 0) {
                 throw new LoiSoTienKhongHopLe("Số tiền nhập vào phải lớn hơn 0!");
             }
 
+            // Khởi tạo đối tượng dựa trên tính Đa hình (Polymorphism)
             GiaoDich gd;
             if (cbLoai.getSelectedIndex() == 0) {
                 gd = new KhoanThu(ma, ngay, noiDung, tien);
@@ -252,7 +261,7 @@ public class GiaoDienChinh extends JFrame {
 
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(this, "Lỗi: Số tiền phải là kiểu số hợp lệ!", "Lỗi định dạng", JOptionPane.ERROR_MESSAGE);
-        } catch (LoiSoTienKhongHopLe ex) {
+        } catch (LoiSoTienKhongHopLe ex) { // Bắt Custom Exception
             JOptionPane.showMessageDialog(this, "Lỗi Nghiệp vụ: " + ex.getMessage(), "Lỗi Dữ liệu", JOptionPane.ERROR_MESSAGE);
         }
     }
@@ -289,6 +298,7 @@ public class GiaoDienChinh extends JFrame {
         double tongThu = 0;
         double tongChi = 0;
 
+        // Bóc tách tổng thu và chi từ danh sách giao dịch để làm dữ liệu nền
         for (GiaoDich gd : dieuKhien.layDanhSach()) {
             if (gd.layLoaiGiaoDich().equals("Khoan Thu")) {
                 tongThu += gd.getSoTien();
@@ -297,10 +307,12 @@ public class GiaoDienChinh extends JFrame {
             }
         }
 
+        // Khởi tạo Dataset chứa dữ liệu truyền vào cho JFreeChart
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
         dataset.addValue(tongThu, "Số tiền (VNĐ)", "Tổng Thu");
         dataset.addValue(tongChi, "Số tiền (VNĐ)", "Tổng Chi");
 
+        // Khởi tạo biểu đồ dạng cột (Bar Chart)
         JFreeChart chart = ChartFactory.createBarChart(
                 "BIỂU ĐỒ THỐNG KÊ THU CHI",
                 "Danh mục",
@@ -312,6 +324,7 @@ public class GiaoDienChinh extends JFrame {
                 false
         );
 
+        // Thiết lập Renderer để custom màu sắc (Thu: Xanh dương, Chi: Đỏ)
         CategoryPlot plot = chart.getCategoryPlot();
         BarRenderer renderer = new BarRenderer() {
             @Override
@@ -325,6 +338,7 @@ public class GiaoDienChinh extends JFrame {
         };
         plot.setRenderer(renderer);
 
+        // Hiển thị biểu đồ lên một cửa sổ (JFrame) độc lập
         ChartPanel chartPanel = new ChartPanel(chart);
         chartPanel.setPreferredSize(new Dimension(600, 450));
 
