@@ -43,19 +43,14 @@ public class GiaoDienChinh extends JFrame {
 
     private void thietLapGiaoDien() {
         try {
-            for (UIManager.LookAndFeelInfo thongTin : UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(thongTin.getName())) {
-                    UIManager.setLookAndFeel(thongTin.getClassName());
-                    break;
-                }
-            }
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (Exception e) {
         }
     }
 
     private void taoGiaoDien() {
         setTitle("Phần mềm Quản lý Thu Chi Cá Nhân");
-        setSize(980, 560);
+        setSize(1000, 580);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         
@@ -129,6 +124,7 @@ public class GiaoDienChinh extends JFrame {
         bangDuLieu.setFont(kieuChu);
         bangDuLieu.setRowHeight(25);
         bangDuLieu.getTableHeader().setFont(kieuChuDam);
+        bangDuLieu.setFillsViewportHeight(true);
         
         bangDuLieu.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         bangDuLieu.getColumnModel().getColumn(0).setPreferredWidth(50);
@@ -153,15 +149,6 @@ public class GiaoDienChinh extends JFrame {
         });
         
         JScrollPane cuonBang = new JScrollPane(bangDuLieu);
-        cuonBang.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-        cuonBang.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        
-        cuonBang.setBorder(BorderFactory.createCompoundBorder(
-                BorderFactory.createLineBorder(Color.GRAY, 1),
-                BorderFactory.createEmptyBorder(0, 0, 3, 0)
-        ));
-        cuonBang.getHorizontalScrollBar().setPreferredSize(new Dimension(0, 22));
-        
         pnlChinh.add(cuonBang, BorderLayout.CENTER);
 
         JPanel pnlDuoi = new JPanel(new BorderLayout());
@@ -264,7 +251,7 @@ public class GiaoDienChinh extends JFrame {
             xoaForm();
 
         } catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(this, "Lỗi: Số tiền phải là kiểu số hợp lệ (không chứa chữ cái)!", "Lỗi định dạng", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Lỗi: Số tiền phải là kiểu số hợp lệ!", "Lỗi định dạng", JOptionPane.ERROR_MESSAGE);
         } catch (LoiSoTienKhongHopLe ex) {
             JOptionPane.showMessageDialog(this, "Lỗi Nghiệp vụ: " + ex.getMessage(), "Lỗi Dữ liệu", JOptionPane.ERROR_MESSAGE);
         }
