@@ -5,7 +5,7 @@
 | STT | Họ và Tên | Mã Sinh Viên | Vai trò / Nhiệm vụ | Link GitHub Cá Nhân |
 |---|---|---|---|---|
 | 1 | Lê Quốc Huy (Nhóm trưởng) | 3120225066 | Viết Code Controller, Model và xử lý File I/O | [GitHub](https://github.com/huychoida2007) |
-| 2 | Trần Quốc Bảo | 3120225012 | Thiết kế giao diện (View) và Bắt lỗi Exception | [GitHub](link_cua_ban_2) |
+| 2 | Trần Quốc Bảo | 3120225012 | Thiết kế giao diện (View) và Bắt lỗi Exception | [GitHub]((https://github.com/ngocanhvtk12-ui)) |
 
 ## 📝 Giới thiệu dự án (Description)
 Đây là phần mềm Quản lý Thu Chi Cá Nhân giúp người dùng dễ dàng ghi chép dòng tiền, phân loại các khoản thu/chi và theo dõi tổng số dư một cách trực quan thông qua giao diện Desktop. Đặc biệt, ứng dụng hỗ trợ vẽ biểu đồ thống kê hàng tháng giúp người dùng quản lý tài chính cá nhân hiệu quả hơn.
